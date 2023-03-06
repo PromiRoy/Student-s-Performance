@@ -100,7 +100,7 @@ library(corrplot)
 
 ```{r}
 #Loading data
-df<-read.csv("C:/Users/Promi/OneDrive/Desktop/student/Student.csv", header=T)
+df<-read.csv("C:/Users/Promi/OneDrive/Desktop/student-mat.csv", header=T)
 df=data.frame(df)
 attach(df)
 head(df)
@@ -476,6 +476,9 @@ Interpretation of the output:
 •	R squared: This is a measure of the correlation between the predictions made by the model and the actual observations. The higher the R-squared, the more closely a model can predict the actual observations.
 
 •	MAE: The mean absolute error. This is the average absolute difference between the predictions made by the model and the actual observations. The lower the MAE, the more closely a model can predict the actual observations.
+
+
+
 ```{r}
 #view final model
 model1$finalModel
@@ -499,12 +502,14 @@ Disadvantages of K-fold Cross-Validation
 metrics of the model. Thus, it is very important to use the correct value of K for the model (generally K = 5 and K = 10 is desirable).
 
 
+
+###Ridge & Lasso Regression
 ```{r}
 #define response variable
 y <- df$G3
 
 #define matrix of predictor variables
-x <- data.matrix(df[, c(1:31, 32)])
+x <- data.matrix(df[, c(1:30, 32)])
 ```
 
 ```{r}
@@ -562,7 +567,7 @@ rsq
 y <- df$G3
 
 #define matrix of predictor variables
-x <- data.matrix(df[, c(1:31, 32)])
+x <- data.matrix(df[, c(1:30, 32)])
 ```
 
 ```{r}
@@ -605,7 +610,6 @@ plot(model, xvar = "lambda")
 ```{r}
 #use fitted best model to make predictions
 y_predicted <- predict(model, s = best_lambda, newx = x)
-
 #find SST and SSE
 sst <- sum((y - mean(y))^2)
 sse <- sum((y_predicted - y)^2)
